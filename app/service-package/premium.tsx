@@ -86,7 +86,7 @@ export default function ServicePackageScreen() {
             }}
           >
             The Premium Package offers the ultimate boarding experience, designed for maximum comfort and personalized attention. Your pet will enjoy an oversized, private enclosure with dedicated climate control and an air purification
-            system. This package includes extended one-on-one playtime, custom feeding schedules, and real-time photo/video updates directly from our staff. It's the highest standard of care available
+            system. This package includes extended one-on-one playtime, custom feeding schedules, and real-time photo/video updates directly from our staff. Its the highest standard of care available
           </Text>
         </View>
 
