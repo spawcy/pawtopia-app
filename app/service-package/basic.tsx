@@ -5,26 +5,12 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
 import { Alert, Image, Pressable, ScrollView, Text, View } from "react-native";
 
-export const PET_CARE_ITEMS = [
-  "Soft pet bed",
-  "Food & water bowl",
-  "Improved ventilation & natural lighting",
-  "Premium toys",
-  "Air purifier included",
-  "Daily enrichment items (sniffing toys, chew toys)",
-];
+export const PET_FACILITIES_BASIC = ["Standard Size Pet Bed", "Food & Water Bowl", "Standard Enclosure with Good Ventilation", "Natural Lighting Access", "Supervised Group Playtime", "Daily Enclosure Cleaning"];
 
-export const PET_PREMIUM_ITEMS = [
-  "Space Size: 2m × 2.5m",
-  "Indoor Area",
-  "Electricity Included (for heater / air purifier)",
-  "Semi-private enclosure with good ventilation",
-];
+export const PET_DAILY_CARE_BASIC = ["2x Daily Feeding", "30-minute Group Playtime", "1x Daily Health Check", "Water Refresh 3x a Day"];
 
 const ListItem = ({ item }: { item: string }) => (
-  <View
-    style={{ flexDirection: "row", alignItems: "flex-start", marginBottom: 2 }}
-  >
+  <View style={{ flexDirection: "row", alignItems: "flex-start", marginBottom: 2 }}>
     <Text style={{ marginRight: 8, fontSize: 18, color: "black" }}>•</Text>
     <Text style={{ color: "#818898" }}>{item}</Text>
   </View>
@@ -86,9 +72,8 @@ export default function ServicePackageScreen() {
               lineHeight: 24,
             }}
           >
-            For this project, you are required to create a fully working
-            application using Android. The application that you have to create
-            must solve real world problems or real concept.
+            A great, cost-effective option for your beloved pets stay. We guarantee a safe, clean, and comfortable environment with staff monitoring during operational hours. Services include two scheduled meals and sufficient rest time.
+            Any additional luxury services can be added on separately.
           </Text>
         </View>
 
@@ -106,7 +91,7 @@ export default function ServicePackageScreen() {
           >
             Space Facilities
           </Text>
-          {PET_PREMIUM_ITEMS.map((item) => (
+          {PET_FACILITIES_BASIC.map((item) => (
             <ListItem key={item} item={item} />
           ))}
         </View>
@@ -123,9 +108,9 @@ export default function ServicePackageScreen() {
               marginRight: "auto",
             }}
           >
-            Space Facilities
+            Daily Care & Activities
           </Text>
-          {PET_CARE_ITEMS.map((item) => (
+          {PET_DAILY_CARE_BASIC.map((item) => (
             <ListItem key={item} item={item} />
           ))}
         </View>
@@ -133,10 +118,7 @@ export default function ServicePackageScreen() {
         <View style={{ marginTop: 30, flexDirection: "row", gap: 20 }}>
           <Pressable
             onPress={() => {
-              Alert.alert(
-                "Purchase Successful",
-                "You have successfully purchased the service package."
-              );
+              Alert.alert("Purchase Successful", "You have successfully purchased the service package.");
               router.push("/(screens)/(screen-state)/purchase-success");
             }}
             style={({ pressed }) => [
@@ -152,9 +134,7 @@ export default function ServicePackageScreen() {
               },
             ]}
           >
-            <Text style={{ fontSize: 22, textAlign: "center", color: "white" }}>
-              Buy a package
-            </Text>
+            <Text style={{ fontSize: 22, textAlign: "center", color: "white" }}>Buy a package</Text>
           </Pressable>
         </View>
       </ThemedView>

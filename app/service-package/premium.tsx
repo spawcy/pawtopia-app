@@ -5,26 +5,25 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
 import { Alert, Image, Pressable, ScrollView, Text, View } from "react-native";
 
-export const PET_CARE_ITEMS = [
-  "Soft pet bed",
-  "Food & water bowl",
-  "Improved ventilation & natural lighting",
-  "Premium toys",
-  "Air purifier included",
-  "Daily enrichment items (sniffing toys, chew toys)",
+export const PET_DAILY_CARE_PREMIUM = [
+  "Custom Feeding Schedule (Including Supplement Handling)",
+  "60-minute Private Play & Training Session",
+  "Real-time Photo & Video Updates (3x/day)",
+  "Detailed End-of-Day Behavior Report",
+  "Specialized Enrichment Toys (Sniffing Mats, Puzzle Feeders)",
 ];
 
-export const PET_PREMIUM_ITEMS = [
-  "Space Size: 2m × 2.5m",
-  "Indoor Area",
-  "Electricity Included (for heater / air purifier)",
-  "Semi-private enclosure with good ventilation",
+export const PET_FACILITIES_PREMIUM = [
+  "Private/Semi-Private Enclosure",
+  "Space Size: 2m x 2.5m (Exclusive Area)",
+  "Advanced Ventilation System",
+  "Air Purifier Included",
+  "Temperature Control Option (Heater/AC available)",
+  "Calming Music Speaker",
 ];
 
 const ListItem = ({ item }: { item: string }) => (
-  <View
-    style={{ flexDirection: "row", alignItems: "flex-start", marginBottom: 2 }}
-  >
+  <View style={{ flexDirection: "row", alignItems: "flex-start", marginBottom: 2 }}>
     <Text style={{ marginRight: 8, fontSize: 18, color: "black" }}>•</Text>
     <Text style={{ color: "#818898" }}>{item}</Text>
   </View>
@@ -86,9 +85,8 @@ export default function ServicePackageScreen() {
               lineHeight: 24,
             }}
           >
-            For this project, you are required to create a fully working
-            application using Android. The application that you have to create
-            must solve real world problems or real concept.
+            The Premium Package offers the ultimate boarding experience, designed for maximum comfort and personalized attention. Your pet will enjoy an oversized, private enclosure with dedicated climate control and an air purification
+            system. This package includes extended one-on-one playtime, custom feeding schedules, and real-time photo/video updates directly from our staff. It's the highest standard of care available
           </Text>
         </View>
 
@@ -106,7 +104,7 @@ export default function ServicePackageScreen() {
           >
             Space Facilities
           </Text>
-          {PET_PREMIUM_ITEMS.map((item) => (
+          {PET_FACILITIES_PREMIUM.map((item) => (
             <ListItem key={item} item={item} />
           ))}
         </View>
@@ -125,7 +123,7 @@ export default function ServicePackageScreen() {
           >
             Space Facilities
           </Text>
-          {PET_CARE_ITEMS.map((item) => (
+          {PET_DAILY_CARE_PREMIUM.map((item) => (
             <ListItem key={item} item={item} />
           ))}
         </View>
@@ -133,10 +131,7 @@ export default function ServicePackageScreen() {
         <View style={{ marginTop: 30, flexDirection: "row", gap: 20 }}>
           <Pressable
             onPress={() => {
-              Alert.alert(
-                "Purchase Successful",
-                "You have successfully purchased the package."
-              );
+              Alert.alert("Purchase Successful", "You have successfully purchased the package.");
 
               router.push("/(screens)/(screen-state)/purchase-success");
             }}
@@ -153,9 +148,7 @@ export default function ServicePackageScreen() {
               },
             ]}
           >
-            <Text style={{ fontSize: 22, textAlign: "center", color: "white" }}>
-              Buy a package
-            </Text>
+            <Text style={{ fontSize: 22, textAlign: "center", color: "white" }}>Buy a package</Text>
           </Pressable>
         </View>
       </ThemedView>
