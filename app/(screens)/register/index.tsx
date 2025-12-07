@@ -3,14 +3,7 @@ import { useRouter } from "expo-router";
 import { FirebaseError } from "firebase/app";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useState } from "react";
-import {
-  Alert,
-  Pressable,
-  ScrollView,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { Alert, Pressable, ScrollView, Text, TextInput, View } from "react-native";
 import { auth } from "../../../FirebaseConfig";
 
 export default function RegisterScreen() {
@@ -22,9 +15,7 @@ export default function RegisterScreen() {
 
   const [showPassword, setShowPassword] = useState(true);
   const [showConfirmPassword, setShowConfirmPassword] = useState(true);
-
   const router = useRouter();
-
   const handleRegister = async () => {
     if (!email || !password || !username) {
       return Alert.alert("Required Fields", "Email and password are required.");
@@ -34,21 +25,14 @@ export default function RegisterScreen() {
       return Alert.alert("Register Failed", "the password is missmatch.");
     }
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
       const user = userCredential.user;
       await updateProfile(user, {
         displayName: username,
       });
 
-      Alert.alert(
-        "Registration Successful! 🎉",
-        "Your account has been created."
-      );
+      Alert.alert("Registration Successful! 🎉", "Your account has been created.");
 
       console.log("Registered User:", userCredential.user);
       router.replace("/(screens)/(home)/home");
@@ -64,11 +48,9 @@ export default function RegisterScreen() {
         } else if (error.code === "auth/invalid-email") {
           displayMessage = "Invalid email format.";
         } else if (error.code === "auth/weak-password") {
-          displayMessage =
-            "Password is too weak. It must be at least 6 characters.";
+          displayMessage = "Password is too weak. It must be at least 6 characters.";
         } else if (error.code === "auth/operation-not-allowed") {
-          displayMessage =
-            "Email/Password sign-up is not enabled. Check your Firebase console.";
+          displayMessage = "Email/Password sign-up is not enabled. Check your Firebase console.";
         }
       } else {
         console.error("General Error:", error);
@@ -77,7 +59,7 @@ export default function RegisterScreen() {
 
       Alert.alert(alertTitle, displayMessage);
       setAuthMessage(displayMessage);
-      return;
+      // return;
     }
   };
 
@@ -97,9 +79,7 @@ export default function RegisterScreen() {
       }}
     >
       <View style={{ width: "100%", alignItems: "center", gap: 20 }}>
-        <Text style={{ fontSize: 28, fontWeight: "bold", color: "#4F2D27" }}>
-          Register
-        </Text>
+        <Text style={{ fontSize: 28, fontWeight: "bold", color: "#4F2D27" }}>Register</Text>
 
         <View
           id="input__groups"
@@ -153,10 +133,7 @@ export default function RegisterScreen() {
           </View>
           <View style={{ width: "80%" }}>
             <Text style={{ color: "#E78454", fontSize: 18 }}>Password</Text>
-            <Pressable
-              onPress={() => setShowPassword(!showPassword)}
-              style={{ position: "relative", marginTop: 12 }}
-            >
+            <Pressable onPress={() => setShowPassword(!showPassword)} style={{ position: "relative", marginTop: 12 }}>
               <TextInput
                 style={{
                   borderWidth: 1,
@@ -205,13 +182,8 @@ export default function RegisterScreen() {
             </Pressable>
           </View>
           <View style={{ width: "80%" }}>
-            <Text style={{ color: "#E78454", fontSize: 18 }}>
-              Confirm Password
-            </Text>
-            <Pressable
-              onPress={() => setShowConfirmPassword(!showConfirmPassword)}
-              style={{ position: "relative", marginTop: 12 }}
-            >
+            <Text style={{ color: "#E78454", fontSize: 18 }}>Confirm Password</Text>
+            <Pressable onPress={() => setShowConfirmPassword(!showConfirmPassword)} style={{ position: "relative", marginTop: 12 }}>
               <TextInput
                 style={{
                   borderWidth: 1,
@@ -261,6 +233,7 @@ export default function RegisterScreen() {
           </View>
         </View>
 
+        {authMessage && <Text style={{ textAlign: "center", fontStyle: "italic", color: "red", marginTop: 16 }}>{authMessage}</Text>}
         <View style={{ marginTop: 30, flexDirection: "row", gap: 20 }}>
           <Pressable
             onPress={handleRegister}
@@ -277,9 +250,7 @@ export default function RegisterScreen() {
               },
             ]}
           >
-            <Text style={{ fontSize: 22, textAlign: "center", color: "white" }}>
-              Create an account
-            </Text>
+            <Text style={{ fontSize: 22, textAlign: "center", color: "white" }}>Create an account</Text>
           </Pressable>
         </View>
       </View>

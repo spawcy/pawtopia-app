@@ -2,14 +2,7 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import { useRouter } from "expo-router";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
-import {
-  Alert,
-  Pressable,
-  ScrollView,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { Alert, Pressable, ScrollView, Text, TextInput, View } from "react-native";
 import { auth } from "../../../FirebaseConfig";
 
 export default function LoginScreen() {
@@ -33,13 +26,8 @@ export default function LoginScreen() {
       let displayMessage = "An unexpected error occurred.";
       let alertTitle = "Login Failed";
 
-      if (
-        error.code === "auth/invalid-credential" ||
-        error.code === "auth/user-not-found" ||
-        error.code === "auth/wrong-password"
-      ) {
-        displayMessage =
-          "Invalid credentials. Please check your email and password.";
+      if (error.code === "auth/invalid-credential" || error.code === "auth/user-not-found" || error.code === "auth/wrong-password") {
+        displayMessage = "Invalid credentials. Please check your email and password.";
       } else if (error.code === "auth/invalid-email") {
         displayMessage = "Invalid email format.";
       } else if (error.code === "auth/user-disabled") {
@@ -66,9 +54,7 @@ export default function LoginScreen() {
         gap: 20,
       }}
     >
-      <Text style={{ fontSize: 28, fontWeight: "bold", color: "#4F2D27" }}>
-        Login
-      </Text>
+      <Text style={{ fontSize: 28, fontWeight: "bold", color: "#4F2D27" }}>Login</Text>
 
       <View
         style={{
@@ -110,10 +96,7 @@ export default function LoginScreen() {
           </View>
           <View style={{ width: "80%" }}>
             <Text style={{ color: "#E78454", fontSize: 18 }}>Password</Text>
-            <Pressable
-              onPress={() => setShowPassword(!showPassword)}
-              style={{ position: "relative", marginTop: 12 }}
-            >
+            <Pressable onPress={() => setShowPassword(!showPassword)} style={{ position: "relative", marginTop: 12 }}>
               <TextInput
                 style={{
                   borderWidth: 1,
@@ -162,11 +145,7 @@ export default function LoginScreen() {
             </Pressable>
           </View>
         </View>
-        {authMessage && (
-          <Text style={{ fontStyle: "italic", color: "red", marginTop: 16 }}>
-            {authMessage}
-          </Text>
-        )}
+        {authMessage && <Text style={{ textAlign: "center", fontStyle: "italic", color: "red", marginTop: 16 }}>{authMessage}</Text>}
         <View style={{ marginTop: 30, flexDirection: "row", gap: 20 }}>
           <Pressable
             onPress={handleLogin}
@@ -183,9 +162,7 @@ export default function LoginScreen() {
               },
             ]}
           >
-            <Text style={{ fontSize: 22, textAlign: "center", color: "white" }}>
-              Login
-            </Text>
+            <Text style={{ fontSize: 22, textAlign: "center", color: "white" }}>Login</Text>
           </Pressable>
         </View>
       </View>
